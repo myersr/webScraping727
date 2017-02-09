@@ -1,0 +1,4 @@
+import pycurl
+
+print 'installed'
+

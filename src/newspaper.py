@@ -1,4 +1,4 @@
-from multiprocessing import Pool
+#from multiprocessing import Pool
 import newspaper
 import time
 from newspaper import Article, news_pool, Source
@@ -22,7 +22,7 @@ def loopI(x,y):
      print i
      first_article = Article(url=cnn_paper.articles[i].url, language='en')
      first_article.download()
-     #time.sleep(1)
+     time.sleep(5)
      first_article.parse()
      #print first_article.text[0:30]
      first_article.nlp()
@@ -35,11 +35,16 @@ def loopI(x,y):
 
 if __name__ == '__main__':
     # start 4 worker processes
-    with Pool(processes=4) as pool:
-         cnn_paper = Source('http://cnn.com', fetch_images=False, memoize_articles=False)
-         cnn_paper.build()
-         print cnn_paper.size()
-         pool.map(loopI, range(10), range(11,20))
+     cnn_paper = Source('http://cnn.com', fetch_images=False)#, memoize_articles=False) 
+#memorize turns off caching which we will need, testing not so much. 
+     #pool takes in an array, we build first
+     cnn_paper.build()
+     sourceArray = [cnn_paper]
+     news_pool.set(sourceArray, threads_per_source=3)
+     news_pool.join()
+     print cnn_paper.size()
+
+     print cnn_paper[3]
 
 
 #for category in cnn_paper.category_urls():
