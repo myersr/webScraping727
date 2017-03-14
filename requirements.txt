@@ -1,2 +1,3 @@
 newspaper
-nltk
+beautifulsoup4
+pycurl

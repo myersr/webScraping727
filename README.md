@@ -5,7 +5,13 @@
 ### Requirements and Installation
 Most packages will be installed via `requirements.txt`. Newspaper requires some additional system packages and installation is covered [here](http://newspaper.readthedocs.io/en/latest/user_guide/install.html)  
 It is a good idea to install everythin within a virtual evironment. [virtualenv](https://virtualenv.pypa.io/en/stable/) is easy to use.  
-After installing the needed packages with apt and activating your virtual environment run `pip install -r requirements.txt` 
+After installing the needed packages with apt and activating your virtual environment run `pip install -r requirements.txt`  
+If you plan on running the beautiful soup program on debian you must install additional source packages
+```
+apt-get install libcurl4-openssl-dev
+
+apt-get install libssl-dev
+```
 
 
 *Note for newspaper*  
